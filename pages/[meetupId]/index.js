@@ -40,7 +40,8 @@ export async function getStaticPaths() {
   client.close()
 
   return {
-    fallback: false, //false means to indicate that we have defined all supported paths here , we get 404 error if user goes to some unknown id in URL /m5
+    fallback: 'blocking', //false means to indicate that we have defined all supported paths here , we get 404 error if user goes to some unknown id in URL /m5
+    //when fallback is set to blocking or true means nextjs will not respond with 404 page,if it can't find the page immediately 
     paths: meetups.map((meetup) => ({
       params: {
         meetupId: meetup._id.toString(),
